@@ -2,6 +2,7 @@ import react from "react";
 import { data } from '../data';
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
+import { addMovies  } from "../actions";
 
 class App extends react.Component {
 
@@ -13,15 +14,12 @@ class App extends react.Component {
     });
     //make api call
     //dispatch action
-    store.dispatch({
-      type:'ADD_MOVIES',
-      movies: data
-    });
+    store.dispatch(addMovies(data));
   }
 
   render() {
-    const movies = this.props.store.getState();
-    console.log('RENDER')
+    const { list } = this.props.store.getState();  // {list: [], favourites: []}
+    console.log('RENDER', this.props.store.getState())
     return (
       <div className="App">
         <Navbar />
@@ -32,7 +30,7 @@ class App extends react.Component {
           </div>
 
           <div className="list">
-            {movies.map((movie, index) => (
+            {list.map((movie, index) => (
               <MovieCard movie={movie} key={`movies-${index}`} />
             ))}
           </div>
