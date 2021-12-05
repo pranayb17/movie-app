@@ -2,6 +2,7 @@ import React from "react";
 import { StoreContext } from "..";
 // import { data } from '../data';
 import { addMovieToList, handleMovieSearch } from '../actions';
+import { connect } from '..';
 
 class Navbar extends React.Component {
 
@@ -71,4 +72,10 @@ class NavbarWrapper extends React.Component {
   }
 }
 
-export default NavbarWrapper;
+function mapStateToProps ({search}) {
+  return {
+    search   // search: search
+  }
+}
+
+export default connect ( mapStateToProps ) (NavbarWrapper);
