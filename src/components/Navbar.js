@@ -2,7 +2,7 @@ import React from "react";
 import { StoreContext } from "..";
 // import { data } from '../data';
 import { addMovieToList, handleMovieSearch } from '../actions';
-import { connect } from '..';
+import { connect } from 'react-redux';
 
 class Navbar extends React.Component {
 
@@ -62,15 +62,15 @@ class Navbar extends React.Component {
   }
 }
 
-class NavbarWrapper extends React.Component {
-  render(){
-    return(
-      <StoreContext.Consumer>
-        {(Store) => <Navbar dispatch={Store.dispatch} search={this.props.search} />}
-      </StoreContext.Consumer>
-    )
-  }
-}
+// class NavbarWrapper extends React.Component {
+//   render(){
+//     return(
+//       <StoreContext.Consumer>
+//         {(Store) => <Navbar dispatch={Store.dispatch} search={this.props.search} />}
+//       </StoreContext.Consumer>
+//     )
+//   }
+// }
 
 function mapStateToProps ({search}) {
   return {
@@ -78,4 +78,4 @@ function mapStateToProps ({search}) {
   }
 }
 
-export default connect ( mapStateToProps ) (NavbarWrapper);
+export default connect ( mapStateToProps ) (Navbar);
